@@ -10,8 +10,6 @@
     <meta name="keywords"
         content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
 
-
-
     <title>@yield('title')</title>
 
     @include('admin.layout.style')
@@ -22,10 +20,16 @@
 <body>
     <div class="wrapper">
 
-        @include('admin.layout.header')
+        @include('admin.layout.menu')
 
+        <div class="main">
+            @include('admin.layout.header')
 
-        @yield('content')
+            @yield('content')
+
+            @include('admin.layout.footer')
+        </div>
+
     </div>
 
     @include('admin.layout.script')

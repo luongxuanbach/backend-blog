@@ -9,7 +9,11 @@ use Illuminate\Http\Request;
 class PostController extends Controller
 {
     public function index() {
-        return Post::all();
+        $posts = Post::latest()->paginate(10);
+        return view('admin.post.list', compact('posts'));
     }
 
+    public function create () {
+        return view('admin.post.create');
+    }
 }
