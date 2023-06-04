@@ -30,7 +30,7 @@
                                     <tr class="text-center">
                                         <td>{{ $post->id }}</td>
                                         <td>{{ $post->title }}</td>
-                                        <td>.</td>
+                                        <td><img src="{{ $post->imageUrl() }}" alt="" width="50px" height="auto"></td>
                                         <td>{{ $post->category->name }}</td>
                                         <td>{{ $post->highlight_post == 1 ? "x" : "" }}</td>
                                         <td>

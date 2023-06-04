@@ -1,6 +1,13 @@
 <script src="/admin/js/app.js"></script>
-
+{{-- <script type="text/javascript" src="/admin/ckeditor/ckeditor.js"></script> --}}
+<script src="https://cdn.ckeditor.com/ckeditor5/38.0.1/classic/ckeditor.js"></script>
 <script>
+    ClassicEditor
+        .create(document.querySelector('#editor'))
+        .catch(error => {
+            console.error(error);
+        });
+
     document.addEventListener("DOMContentLoaded", function() {
         var ctx = document.getElementById("chartjs-dashboard-line").getContext("2d");
         var gradient = ctx.createLinearGradient(0, 0, 0, 225);

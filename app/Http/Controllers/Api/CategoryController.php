@@ -58,7 +58,7 @@ class CategoryController extends Controller
 
         while($checkSlug){
             $slug = $checkSlug->slug . Str::random(2);
-        }
+        } 
         $category = Category::find($id);
         $category->update([
             'name' => $request->name,
@@ -71,6 +71,6 @@ class CategoryController extends Controller
     public function delete ($id) {
         $category = Category::find($id);
         $category->delete();
-        return redirect()->route('admin.category.index', $id)->with('success', 'Delete successfully '.$category->name);
+        return redirect()->route('admin.category.index')->with('success', 'Delete successfully '.$category->name);
     }
 }
