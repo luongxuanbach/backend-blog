@@ -3,32 +3,20 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Contact;
 use Illuminate\Http\Request;
 
 class ContactController extends Controller
 {
     public function index () {
         //get contact 
-        return view('admin.contact.list');
+        $contacts = Contact::paginate(20);
+        return view('admin.contact.list', compact('contacts'));
     }
 
-    public function create () {
-        return view('admin.contact.create');
-    }
-
-    public function store () {
-        
-    }
-
-    public function edit () {
-        
-    }
-
-    public function update () {
-        
-    }
-
-    public function delete () {
-        
+    public function delete ($id) {
+        $contact = Contact::find($id);
+        $contact->delete();
+        return redirect()->route('admin.contact.index')->with('success', 'Delete successfully '.$contact->name);
     }
 }

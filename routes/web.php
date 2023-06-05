@@ -80,7 +80,7 @@ Route::prefix('admin')->group(function () {
         ->name('admin.contact.update');
 
         Route::get('delete/{id}', [ContactController::class, 'delete'])
-        ->name('admin.category.delete');
+        ->name('admin.contact.delete');
     });
 
     Route::prefix('user')->group(function () {
