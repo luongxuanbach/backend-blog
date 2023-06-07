@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\PostController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\ContactController;
 use App\Http\Controllers\Api\CommentController;
+use App\Http\Controllers\Web\WebController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,10 +19,6 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Route::prefix('admin')->group(function() {
     Route::get('login', [AuthController::class, 'login'])->name('admin.auth.login');
@@ -137,3 +134,12 @@ Route::prefix('admin')->middleware('admin.login')->group(function () {
 
 
 });
+
+// Client Route
+Route::get('/', [WebController::class, 'home']);
+
+Route::get('category', [WebController::class, 'category']);
+Route::get('category/{slug}', [WebController::class, 'categorySlug']);
+Route::get('post/{slug}', [WebController::class, 'post']);
+Route::get('contact', [WebController::class, 'contact']);
+Route::post('contact', [WebController::class, 'sendcontact']);
