@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\PostController;
 use App\Http\Controllers\Api\UserController;
@@ -22,7 +23,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::prefix('admin')->group(function () {
+Route::prefix('admin')->group(function() {
+    Route::get('login', [AuthController::class, 'login'])->name('admin.auth.login');
+
+    Route::post('login', [AuthController::class, 'checkLogin'])->name('admin.auth.check-login');
+});
+
+Route::prefix('admin')->middleware('admin.login')->group(function () {
+    Route::get('logout', [AuthController::class, 'logout'])->name('admin.auth.logout');
+
+    Route::get('profile', [AuthController::class, 'profile'])->name('admin.profile.index');
+    Route::put('profile', [AuthController::class, 'updateProfile'])->name('admin.profile.update');
+
     Route::prefix('category')->group(function () {
         Route::get('', [CategoryController::class, 'index'])
         ->name('admin.category.index');
